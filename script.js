@@ -1,6 +1,4 @@
-const myLibrary = [
-    
-];
+const myLibrary = [];
 
 const book = function(title, author, pages, read) {
     this.title = title;
@@ -36,32 +34,51 @@ function createCard(array, index){
     container.appendChild(card);
 }
 
+function createCard(title, author, pages, read){
+    const card = document.createElement("div");
+    card.className = 'card';
+    const titleP = document.createElement('p');
+    titleP.innerHTML = `TITLE: ${title}`;
+    const authorP = document.createElement('p');
+    authorP.innerHTML = `AUTHOR: ${author}`;
+    const pagesP = document.createElement('p');
+    pagesP.innerHTML = `PAGES: ${pages}`;
+    const readP = document.createElement('p');
+    readP.innerHTML = `READ: ${read}`;
+    card.append(titleP, authorP, pagesP, readP);
+    container.appendChild(card);
+}
+
 function displayBooks(array){
     for(let i = 0; i < array.length; i++){
-        createCard(array, i);
+        createCard(array[i].title, array[i].author, array[i].pages, array[i].read);
     }
 }
 
-displayBooks(myLibrary);
-
 const addButton = document.querySelector('.add-button');
 const dialog = document.querySelector('.popup-form');
-const titleIn = document.querySelector('#title');
-const authorIn = document.querySelector('#author');
-const pagesIn = document.querySelector('#pages');
-const readIn = document.querySelector('#read');
-const submitButton = document.querySelector('#submit-button');
+const form = document.querySelector('#book-form');
 
 addButton.addEventListener("click", () => {
     dialog.showModal();
 });
 
-submitButton.addEventListener("click", () => {
-    addBookToLibrary(titleIn.value, authorIn.value, pagesIn.value, readIn.value);
-    console.log(myLibrary);
-    createCard(myLibrary, myLibrary.length-1);
-    
+function processForm(event){
+    const form = event.target;
+    const formData = new FormData(form);
+    const title = formData.get('title');
+    const author = formData.get('author');
+    const pages = formData.get('pages');
+    const read = formData.get('read');
+
+    addBookToLibrary(title, author, pages, read);
+    createCard(title, author, pages, read);
     dialog.close();
+}
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission (page reload)
+    processForm(event); // Call your custom function
 });
 
 const print = document.querySelector('header button');
