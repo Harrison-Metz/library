@@ -17,12 +17,27 @@ body {
 }
 
 .books {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+    "title button"
+    "books books";
     background-color: gainsboro;
     padding: 1rem;
     height: 100%;
 }
 
+.books h1 {
+    grid-area: title;
+}
+
+.books button {
+    grid-area: button;
+}
+
 .book-container {
+    grid-area: books;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1rem;
@@ -33,6 +48,10 @@ body {
     padding: 1rem;
     border-radius: 12px;
     height: min-content;
+}
+
+.popup-form {
+    
 }
 
 

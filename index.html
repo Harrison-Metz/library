@@ -10,10 +10,23 @@
 <body>
     <header class="header">
         <h1>Library</h1>
+        <button>print</button>
     </header>
     <div class="books">
         <h1>Your Books</h1>
+        <button class="add-button">Add Book</button>
         <div class="book-container" id="book-container"></div>
+        <dialog class="popup-form">
+            <h1>Add Book to Library</h1>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title">
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author">
+            <label for="pages">Pages:</label>
+            <input type="text" name="pages" id="pages">
+            <label for="read">Read: <input type="checkbox" name="read" id="read"></label>
+            <button id="submit-button">Add</button>
+        </dialog>
     </div>
     
 </body>

@@ -1,6 +1,5 @@
 const myLibrary = [
-    {author : "JK", id : "a376b501-96e2-4195-a661-66026b04e316", pages : 420, read : true, title : "hp"},
-    {author : "Tolk", id : "a3adfasfasdf", pages : 69, read : false, title : "lotr"}
+    
 ];
 
 const book = function(title, author, pages, read) {
@@ -18,7 +17,6 @@ book.prototype.toggleRead = function(){
 function addBookToLibrary(title, author, pages, read) {
     let new_book = new book(title, author, pages, read);
     myLibrary.push(new_book);
-    return myLibrary;
 }
 
 const container = document.getElementById('book-container');
@@ -46,4 +44,27 @@ function displayBooks(array){
 
 displayBooks(myLibrary);
 
+const addButton = document.querySelector('.add-button');
+const dialog = document.querySelector('.popup-form');
+const titleIn = document.querySelector('#title');
+const authorIn = document.querySelector('#author');
+const pagesIn = document.querySelector('#pages');
+const readIn = document.querySelector('#read');
+const submitButton = document.querySelector('#submit-button');
 
+addButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+submitButton.addEventListener("click", () => {
+    addBookToLibrary(titleIn.value, authorIn.value, pagesIn.value, readIn.value);
+    console.log(myLibrary);
+    createCard(myLibrary, myLibrary.length-1);
+    
+    dialog.close();
+});
+
+const print = document.querySelector('header button');
+print.addEventListener('click', () => {
+    console.log(myLibrary);
+})
