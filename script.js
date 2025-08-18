@@ -74,6 +74,7 @@ function processForm(event){
     addBookToLibrary(title, author, pages, read);
     createCard(title, author, pages, read);
     dialog.close();
+    form.reset();
 }
 
 form.addEventListener('submit', function(event) {
