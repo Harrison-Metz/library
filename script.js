@@ -15,28 +15,15 @@ book.prototype.toggleRead = function(){
 function addBookToLibrary(title, author, pages, read) {
     let new_book = new book(title, author, pages, read);
     myLibrary.push(new_book);
+    return new_book.id;
 }
 
 const container = document.getElementById('book-container');
 
-function createCard(array, index){
+function createCard(title, author, pages, read, id){
     const card = document.createElement("div");
     card.className = 'card';
-    const title = document.createElement('p');
-    title.innerHTML = `TITLE: ${array[index].title}`;
-    const author = document.createElement('p');
-    author.innerHTML = `AUTHOR: ${array[index].author}`;
-    const pages = document.createElement('p');
-    pages.innerHTML = `PAGES: ${array[index].pages}`;
-    const read = document.createElement('p');
-    read.innerHTML = `READ: ${array[index].read}`;
-    card.append(title, author, pages, read);
-    container.appendChild(card);
-}
-
-function createCard(title, author, pages, read){
-    const card = document.createElement("div");
-    card.className = 'card';
+    card.setAttribute('data-book-id', id);
     const titleP = document.createElement('p');
     titleP.innerHTML = `TITLE: ${title}`;
     const authorP = document.createElement('p');
@@ -72,8 +59,8 @@ function processForm(event){
     const pages = formData.get('pages');
     const read = formData.get('read');
 
-    addBookToLibrary(title, author, pages, read);
-    createCard(title, author, pages, read);
+    // addBookToLibrary(title, author, pages, read);
+    createCard(title, author, pages, read,  addBookToLibrary(title, author, pages, read));
     dialog.close();
     form.reset();
 }
