@@ -56,7 +56,7 @@ function displayBooks(array){
 }
 
 const addButton = document.querySelector('.add-button');
-const dialog = document.querySelector('.popup-form');
+const dialog = document.querySelector('.popup');
 const form = document.querySelector('#book-form');
 
 addButton.addEventListener("click", () => {
@@ -78,8 +78,8 @@ function processForm(event){
 }
 
 form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission (page reload)
-    processForm(event); // Call your custom function
+    event.preventDefault();
+    processForm(event);
 });
 
 const print = document.querySelector('header button');
