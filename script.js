@@ -58,6 +58,7 @@ function displayBooks(array){
 const addButton = document.querySelector('.add-button');
 const dialog = document.querySelector('.popup');
 const form = document.querySelector('#book-form');
+const closeButton = document.querySelector('#close-button');
 
 addButton.addEventListener("click", () => {
     dialog.showModal();
@@ -82,7 +83,6 @@ form.addEventListener('submit', function(event) {
     processForm(event);
 });
 
-const print = document.querySelector('header button');
-print.addEventListener('click', () => {
-    console.log(myLibrary);
-})
+closeButton.addEventListener('click', () => {
+    dialog.close();
+});

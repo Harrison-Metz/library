@@ -34,10 +34,23 @@ body:has(dialog[open]) {
 
 .books h1 {
     grid-area: title;
+    padding-bottom: 1rem;
 }
 
-.books button {
+.books > button {
     grid-area: button;
+    background-color: cornflowerblue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0.5rem 1rem;
+    width: 50%;
+    margin-right: 0;
+    margin-left: auto;
+    border: none;
+    border-radius: 10px;
 }
 
 .book-container {
@@ -71,6 +84,7 @@ body:has(dialog[open]) {
     height: 100%;
     display: grid;
     grid-template-rows: repeat(5, 1fr) auto;
+    gap: 5px;
     grid-template-areas: 
     "head"
     "title"
@@ -141,8 +155,24 @@ form div {
     border-radius: 10px;
     margin-top: 1rem;
     width: 45%;
+    font-size: 1rem;
 }
 
 #submit-button {
     background-color: cornflowerblue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+svg {
+    width: 1rem;
+    height: 1rem;
+    fill: white;
+}
+
+button:hover {
+    opacity: 0.8;
 }

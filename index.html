@@ -10,11 +10,13 @@
 <body>
     <header class="header">
         <h1>Library</h1>
-        <button>print</button>
     </header>
     <div class="books">
         <h1>Your Books</h1>
-        <button class="add-button">Add Book</button>
+        <button class="add-button">
+            <p>Add Book</p>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus-box</title><path d="M17,13H13V17H11V13H7V11H11V7H13V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" /></svg>
+        </button>
         <div class="book-container" id="book-container"></div>
         <dialog class="popup">
             <form id="book-form">
@@ -23,24 +25,26 @@
                 </div>
                 <div class="title">
                     <label for="title">Title:</label>
-                    <input type="text" name="title" id="title">
+                    <input type="text" name="title" id="title" required autofocus>
                 </div>
                 <div class="author">
                     <label for="author">Author:</label>
-                    <input type="text" name="author" id="author">
+                    <input type="text" name="author" id="author" required>
                 </div>
                 <div class="pages">
                     <label for="pages">Pages:</label>
-                    <input type="text" name="pages" id="pages">
+                    <input type="text" name="pages" id="pages" required>
                 </div>
                 <div class="read">
                     <label for="read">Read: </label>
-                    <input type="checkbox" name="read" id="read">
+                    <input type="checkbox" name="read" id="read" required>
                 </div>
                 <div class="buttons">
-                    <button id="close-button">close</button>
-                    <button type="submit" id="submit-button">Add</button>
-
+                    <button id="close-button" type="button">Cancel</button>
+                    <button type="submit" id="submit-button">
+                        <p>Add</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus-box</title><path d="M17,13H13V17H11V13H7V11H11V7H13V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" /></svg>
+                    </button>
                 </div>
             </form>
         </dialog>
