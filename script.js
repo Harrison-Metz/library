@@ -30,13 +30,32 @@ function createCard(title, author, pages, read, id){
     authorP.innerHTML = `AUTHOR: ${author}`;
     const pagesP = document.createElement('p');
     pagesP.innerHTML = `PAGES: ${pages}`;
+    const readContainer = document.createElement('div');
+    readContainer.className = 'read-container';
     const readP = document.createElement('p');
     readP.innerHTML = `READ: ${read}`;
-    card.append(titleP, authorP, pagesP, readP);
+    const readBtn = document.createElement('button');
+    readBtn.innerHTML = 'Change';
+    readContainer.append(readP, readBtn);
+    const removeBtn = document.createElement('button');
+    removeBtn.innerHTML = 'Remove';
+    removeBtn.className = 'removeBtn'
+
+    removeBtn.addEventListener('click', function(event){
+        const parent = event.target.parentNode;
+        const id = parent.dataset.bookId
+        const index = myLibrary.findIndex(item => item.id === id);
+        myLibrary.splice(index, 1);
+        displayBooks(myLibrary)
+        console.log(myLibrary);
+    });
+
+    card.append(titleP, authorP, pagesP, readContainer, removeBtn);
     container.appendChild(card);
 }
 
 function displayBooks(array){
+    container.innerHTML = '';
     for(let i = 0; i < array.length; i++){
         createCard(array[i].title, array[i].author, array[i].pages, array[i].read);
     }
