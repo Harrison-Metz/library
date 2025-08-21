@@ -24,28 +24,35 @@ function createCard(title, author, pages, read, id){
     const card = document.createElement("div");
     card.className = 'card';
     card.setAttribute('data-book-id', id);
-    const titleP = document.createElement('p');
-    titleP.innerHTML = `TITLE: ${title}`;
-    const authorP = document.createElement('p');
-    authorP.innerHTML = `AUTHOR: ${author}`;
-    const pagesP = document.createElement('p');
-    pagesP.innerHTML = `PAGES: ${pages}`;
-    const readContainer = document.createElement('div');
 
+    const titleH = document.createElement('h1');
+    titleH.innerHTML = 'Title:';
+    const titleP = document.createElement('p');
+    titleP.innerHTML = title;
+
+    const authorH = document.createElement('h1');
+    authorH.innerHTML = 'Author:';
+    const authorP = document.createElement('p');
+    authorP.innerHTML = author;
+
+    const pagesH = document.createElement('h1');
+    pagesH.innerHTML = 'Pages:';
+    const pagesP = document.createElement('p');
+    pagesP.innerHTML = pages;
+
+    const readContainer = document.createElement('div');
+    readContainer.className = 'read-container';
+    const readBtn = document.createElement('button');
+    readBtn.innerHTML = 'Read?';
+    readBtn.className = 'changeBtn';
+    const readP = document.createElement('p');
     let readTxt = '';
-    if(read === true){
+    if(read === true || read === 'on'){
         readTxt = 'Yes';
     }else{
         readTxt = 'No';
     }
-
-    readContainer.className = 'read-container';
-    const readP = document.createElement('p');
-    readP.innerHTML = `READ: ${readTxt}`;
-    const readBtn = document.createElement('button');
-    readBtn.innerHTML = 'Change';
-    readBtn.className = 'changeBtn';
-
+    readP.innerHTML = readTxt;
     readBtn.addEventListener('click', function(event){
         const parent = event.target.parentNode;
         const parentsParent = parent.parentNode;
@@ -55,13 +62,11 @@ function createCard(title, author, pages, read, id){
         myObject.toggleRead();
         displayBooks(myLibrary);
     });
-
-    readContainer.append(readP, readBtn);
+    readContainer.append(readBtn, readP);
 
     const removeBtn = document.createElement('button');
     removeBtn.innerHTML = 'Remove';
     removeBtn.className = 'removeBtn'
-
     removeBtn.addEventListener('click', function(event){
         const parent = event.target.parentNode;
         const id = parent.dataset.bookId
@@ -71,7 +76,7 @@ function createCard(title, author, pages, read, id){
         console.log(myLibrary);
     });
 
-    card.append(titleP, authorP, pagesP, readContainer, removeBtn);
+    card.append(titleH, titleP, authorH, authorP, pagesH, pagesP, readContainer, removeBtn);
     container.appendChild(card);
 }
 
