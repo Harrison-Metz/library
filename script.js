@@ -31,12 +31,33 @@ function createCard(title, author, pages, read, id){
     const pagesP = document.createElement('p');
     pagesP.innerHTML = `PAGES: ${pages}`;
     const readContainer = document.createElement('div');
+
+    let readTxt = '';
+    if(read === true){
+        readTxt = 'Yes';
+    }else{
+        readTxt = 'No';
+    }
+
     readContainer.className = 'read-container';
     const readP = document.createElement('p');
-    readP.innerHTML = `READ: ${read}`;
+    readP.innerHTML = `READ: ${readTxt}`;
     const readBtn = document.createElement('button');
     readBtn.innerHTML = 'Change';
+    readBtn.className = 'changeBtn';
+
+    readBtn.addEventListener('click', function(event){
+        const parent = event.target.parentNode;
+        const parentsParent = parent.parentNode;
+        const id = parentsParent.dataset.bookId
+        const index = myLibrary.findIndex(item => item.id === id);
+        const myObject = myLibrary[index];
+        myObject.toggleRead();
+        displayBooks(myLibrary);
+    });
+
     readContainer.append(readP, readBtn);
+
     const removeBtn = document.createElement('button');
     removeBtn.innerHTML = 'Remove';
     removeBtn.className = 'removeBtn'
@@ -46,7 +67,7 @@ function createCard(title, author, pages, read, id){
         const id = parent.dataset.bookId
         const index = myLibrary.findIndex(item => item.id === id);
         myLibrary.splice(index, 1);
-        displayBooks(myLibrary)
+        displayBooks(myLibrary);
         console.log(myLibrary);
     });
 
@@ -57,7 +78,7 @@ function createCard(title, author, pages, read, id){
 function displayBooks(array){
     container.innerHTML = '';
     for(let i = 0; i < array.length; i++){
-        createCard(array[i].title, array[i].author, array[i].pages, array[i].read);
+        createCard(array[i].title, array[i].author, array[i].pages, array[i].read, array[i].id);
     }
 }
 
@@ -78,7 +99,6 @@ function processForm(event){
     const pages = formData.get('pages');
     const read = formData.get('read');
 
-    // addBookToLibrary(title, author, pages, read);
     createCard(title, author, pages, read,  addBookToLibrary(title, author, pages, read));
     dialog.close();
     form.reset();
